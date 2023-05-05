@@ -1,0 +1,30 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+		"python.analysis.typeCheckingMode": "basic",
+		"python.formatting.provider": "black",
+		"window.zoomLevel": 0,
+		"editor.formatOnSaveMode": "file",
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true
+		},
+		"workbench.colorCustomizations": {
+			"titleBar.activeBackground": "#18291d"
+		},
+		"files.exclude": {
+			"**/.venv": true,
+			"**/.old": true,
+			"**/.ignore": true,
+			"**/build": true,
+			"**/dist": true,
+			"poetry.lock": true,
+			"**/*.zip": true,
+		}
+	}
+}
