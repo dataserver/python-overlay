@@ -8,8 +8,8 @@ A simple example of overlay app (Timer) and trayicon using TKinter
 
 
 ## screenshot
-> ![Overlay Screenshot](screenshot.png?raw=true "screenshot")
-
+| ![Overlay Screenshot](screenshot.png?raw=true "screenshot") |
+|-|
 
 ## License ##
 
