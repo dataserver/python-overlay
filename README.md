@@ -2,8 +2,14 @@
 
 A simple example of overlay app (Timer) and trayicon using TKinter
 
+
 ## requirements
 - [infi.systray](https://github.com/Infinidat/infi.systray)
+
+
+## screenshot
+![Overlay Screenshot](screenshot.png?raw=true "screenshot")
+
 
 ## License ##
 
