@@ -1,6 +1,6 @@
 # Simple python overlay example
 
-A simple example of overlay app (Timer) and trayicon using TKinter
+A simple example of overlay app (Timer) and trayicon using Tkinter
 
 
 ## requirements

@@ -14,7 +14,7 @@ class Config:
 
     APP_BTN_BG_COLOR: str = "#1F1F1F"
     APP_BTN_FG_COLOR: str = "#FFFFFF"
-    TIMERS: tuple = (5, 60, 300, 1800, 3600, 7200)  # in seconds
+    TIMERS: tuple = (5, 60, 300, 600, 1200, 3600)  # in seconds
 
     FONT_DEFAULT: tuple = ("Segoe UI", 10, "normal")
     FONT_LABEL: tuple = ("Segoe UI", 10, "normal")
