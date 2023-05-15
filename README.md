@@ -14,9 +14,12 @@ clickthrought.py
 - win32gui
 
 ## screenshot
+Timer overlay
 | ![Overlay Screenshot](screenshot.png?raw=true "screenshot") |
 |-|
 
+
+trayicon from clickthrought demo
 | ![Overlay Screenshot](screenshot2.png?raw=true "screenshot") |
 |-|
 
