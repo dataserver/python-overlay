@@ -23,6 +23,15 @@ trayicon from clickthrought demo
 | ![Overlay Screenshot](screenshot2.png?raw=true "screenshot") |
 |-|
 
+## note
+timer.py uses infi.systray library wich requires
+
+    hiddenimports=['pkg_resources']
+
+pyinstller's .spec file for it to work.
+
+
+
 ## License ##
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)

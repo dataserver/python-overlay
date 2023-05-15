@@ -5,13 +5,13 @@ block_cipher = None
 
 
 a = Analysis(
-    ['app/main.py'],
+    ['app/clickthrough.py'],
     pathex=[],
     binaries=[],
     datas=[
         ('app/img', 'img'),
     ],
-    hiddenimports=['pkg_resources'],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -29,7 +29,7 @@ exe = EXE(
     a.scripts, 
     [],
     exclude_binaries=True,
-    name='overlay_demo',
+    name='overlay_clickthrough',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -67,5 +67,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='overlay_demo'
+    name='overlay_clickthrough'
 )
