@@ -4,7 +4,7 @@ A simple example of overlay app (Timer) and trayicon using Tkinter
 
 
 ## requirements
-demo.py
+timer.py
 - infi.systray (trayicon lib)
 
 clickthrought.py
