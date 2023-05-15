@@ -17,6 +17,9 @@ clickthrought.py
 | ![Overlay Screenshot](screenshot.png?raw=true "screenshot") |
 |-|
 
+| ![Overlay Screenshot](screenshot2.png?raw=true "screenshot") |
+|-|
+
 ## License ##
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
