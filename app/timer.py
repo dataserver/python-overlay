@@ -6,7 +6,20 @@ from pathlib import Path
 from threading import Event, Thread
 
 from config import Config
-from trayicon import TrayIcon
+from infi.systray import SysTrayIcon
+
+
+class TrayIcon:
+    def __init__(self):
+        menu_options = ()
+        path_icon = str(Path(Config.BASE_IMG_PATH, Config.APP_LOGO_ICO))
+        systray = SysTrayIcon(
+            path_icon,
+            "My System Tray Icon",
+            menu_options,
+            on_quit=lambda _: os._exit(0),
+        )
+        systray.start()
 
 
 class Timer:
@@ -70,7 +83,7 @@ class App:
         image = tk.PhotoImage(file=str(Path(Config.BASE_IMG_PATH, Config.APP_LOGO_PNG)))
         image_logo = image.subsample(9)
         self.logo = tk.Label(
-            self.root, border=0, bg=Config.APP_BG_COLOR, image=image_logo
+            self.root, border=0, bg=Config.DARK_BG_COLOR, image=image_logo
         )
         self.logo.image = image_logo  # type: ignore
         self.logo.place(x=11, y=13)
@@ -78,8 +91,8 @@ class App:
             self.root,
             text="Timer",
             font=self.font_label,
-            fg=Config.APP_BTN_FG_COLOR,
-            bg=Config.APP_BG_COLOR,
+            fg=Config.DARK_FG_COLOR,
+            bg=Config.DARK_BG_COLOR,
             bd=0,
             pady=0,
         )
@@ -90,8 +103,8 @@ class App:
             self.root,
             text="Reset",
             font=self.font_btn,
-            fg=Config.APP_BTN_FG_COLOR,
-            bg=Config.APP_BTN_BG_COLOR,
+            fg=Config.DARK_FG_COLOR,
+            bg=Config.DARK_BG_COLOR,
             bd=0,
             pady=0,
             command=self.timers_reset_all,
@@ -101,8 +114,8 @@ class App:
             self.root,
             text="Quit",
             font=self.font_btn,
-            fg=Config.APP_BTN_FG_COLOR,
-            bg=Config.APP_BTN_BG_COLOR,
+            fg=Config.DARK_FG_COLOR,
+            bg=Config.DARK_BG_COLOR,
             bd=0,
             pady=0,
             command=self.quit_app,
@@ -112,19 +125,25 @@ class App:
         # Hour
         self.header_hour_text = tk.StringVar()
         self.header_hour_text.set("Hour")
-        self.header_hour_label = self._create_label(self.header_hour_text, 10, "yellow")
+        self.header_hour_label = self._create_label(
+            self.header_hour_text, 10, Config.DARK_HEAD_TEXT_FG
+        )
         self.header_hour_label.place(x=self._padx + 10, y=row_y)
 
         # Min
         self.header_min_text = tk.StringVar()
         self.header_min_text.set("Min")
-        self.header_min_label = self._create_label(self.header_min_text, 10, "yellow")
+        self.header_min_label = self._create_label(
+            self.header_min_text, 10, Config.DARK_HEAD_TEXT_FG
+        )
         self.header_min_label.place(x=self._padx + 45, y=row_y)
 
         # Sec
         self.header_sec_text = tk.StringVar()
         self.header_sec_text.set("Sec")
-        self.header_sec_label = self._create_label(self.header_sec_text, 10, "yellow")
+        self.header_sec_label = self._create_label(
+            self.header_sec_text, 10, Config.DARK_HEAD_TEXT_FG
+        )
         self.header_sec_label.place(x=self._padx + 80, y=row_y)
 
         for idx, seconds in enumerate(Config.TIMERS):
@@ -168,8 +187,8 @@ class App:
             self.root,
             text="Start",
             font=self.font_btn,
-            fg=Config.APP_BTN_FG_COLOR,
-            bg=Config.APP_BTN_BG_COLOR,
+            fg=Config.DARK_FG_COLOR,
+            bg=Config.DARK_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.timer_start, idx=idx),
@@ -180,8 +199,8 @@ class App:
             self.root,
             text="Reset",
             font=self.font_btn,
-            fg=Config.APP_BTN_FG_COLOR,
-            bg=Config.APP_BTN_BG_COLOR,
+            fg=Config.DARK_FG_COLOR,
+            bg=Config.DARK_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.timer_reset, idx=idx),
@@ -194,7 +213,7 @@ class App:
             textvariable=text,
             font=self.font_label,
             fg=color,
-            bg=Config.APP_BG_COLOR,
+            bg=Config.DARK_BG_COLOR,
             bd=0,
             padx=0,
             pady=0,
@@ -288,7 +307,7 @@ class BackgroundImgFrame(tk.Frame):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        image = tk.PhotoImage(file=str(Path(Config.BASE_IMG_PATH, Config.APP_BG_IMG)))
+        image = tk.PhotoImage(file=str(Path(Config.BASE_IMG_PATH, Config.DARK_BG_IMG)))
         self.background_image = image.zoom(2).subsample(3)
         self.background = tk.Label(
             self, border=0, bg="grey15", image=self.background_image

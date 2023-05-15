@@ -4,8 +4,14 @@ A simple example of overlay app (Timer) and trayicon using Tkinter
 
 
 ## requirements
-- [infi.systray](https://github.com/Infinidat/infi.systray)
+demo.py
+- infi.systray (trayicon lib)
 
+clickthrought.py
+- pystray (using another trayicon lib)
+- Pillow
+- win32api
+- win32gui
 
 ## screenshot
 | ![Overlay Screenshot](screenshot.png?raw=true "screenshot") |
