@@ -9,9 +9,8 @@ timer.py
 
 clickthrought.py
 - pystray (using another trayicon lib)
-- Pillow
-- win32api
-- win32gui
+- pillow
+- pypiwin32
 
 ## screenshot
 Timer overlay
