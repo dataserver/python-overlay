@@ -8,9 +8,15 @@ timer.py
 - infi.systray (trayicon lib)
 
 clickthrought.py
-- pystray (using another trayicon lib)
 - pillow
+- pystray (using another trayicon lib)
 - pypiwin32
+
+clickthrought-vlc.py
+- pillow
+- pypiwin32 
+- pystray
+- python-vlc
 
 ## screenshot
 Timer overlay

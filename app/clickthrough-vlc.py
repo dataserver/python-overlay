@@ -1,9 +1,7 @@
 import os
 import tkinter as tk
-from dataclasses import dataclass
 from functools import partial
 from pathlib import Path
-from random import randint
 
 import PIL.Image
 import PIL.ImageTk
@@ -23,19 +21,16 @@ class App:
         self.root.bind("<Button-1>", self.overlay_click)
         self.root.bind("<B1-Motion>", self.overlay_drag)
         self.trayicon_menu_clickthrough_state = False
+
         self.playlist = []
         self.volume = 50
-        # Create a basic vlc instance
-        self.current_music_index = 1
+        self.vlc_is_paused = False
         self.media_player = vlc.MediaListPlayer()
         self.instance_player = vlc.Instance()
         self.media_list = self.instance_player.media_list_new()  # type: ignore
-
         self.parsem3u(Config.M3U_PLAYLIST)
 
-        self.vlc_is_paused = False
-
-        _color_bg = "grey15"  # same color to make it works
+        _color_bg = "grey15"
         self.root.overrideredirect(True)
         self.root.config(bg=Config.LIGHT_BG_COLOR)
         self.root.attributes(
