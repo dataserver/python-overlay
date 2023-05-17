@@ -12,7 +12,7 @@ from infi.systray import SysTrayIcon
 class TrayIcon:
     def __init__(self):
         menu_options = ()
-        path_icon = str(Path(Config.BASE_IMG_PATH, Config.APP_LOGO_ICO))
+        path_icon = str(Config.APP_LOGO_ICO)
         systray = SysTrayIcon(
             path_icon,
             "My System Tray Icon",
@@ -80,7 +80,7 @@ class App:
         row_y = 50
 
         # LOGO
-        image = tk.PhotoImage(file=str(Path(Config.BASE_IMG_PATH, Config.APP_LOGO_PNG)))
+        image = tk.PhotoImage(file=str(Config.APP_LOGO_PNG))
         image_logo = image.subsample(9)
         self.logo = tk.Label(
             self.root, border=0, bg=Config.DARK_BG_COLOR, image=image_logo
@@ -307,7 +307,7 @@ class BackgroundImgFrame(tk.Frame):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        image = tk.PhotoImage(file=str(Path(Config.BASE_IMG_PATH, Config.DARK_BG_IMG)))
+        image = tk.PhotoImage(file=str(Config.DARK_BG_IMG))
         self.background_image = image.zoom(2).subsample(3)
         self.background = tk.Label(
             self, border=0, bg="grey15", image=self.background_image

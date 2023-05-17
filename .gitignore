@@ -87,3 +87,4 @@ build/
 
 poetry.lock
 test.py
+playlist.m3u

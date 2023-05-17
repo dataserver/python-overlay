@@ -10,6 +10,7 @@ infi-systray = "^0.1.12"
 pypiwin32 = "^223"
 pillow = "^9.5.0"
 pystray = "^0.19.4"
+python-vlc = "^3.0.18122"
 
 [tool.poetry.dev-dependencies]
 

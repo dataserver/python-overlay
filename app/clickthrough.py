@@ -1,7 +1,5 @@
 import os
-import threading
 import tkinter as tk
-from functools import partial
 from pathlib import Path
 from random import randint
 
@@ -32,9 +30,7 @@ class App:
 
         # canvas background
         self.bg_canvas = tk.Canvas(self.root, bg=_color_bg, highlightthickness=0)
-        img_frame = PIL.ImageTk.PhotoImage(
-            file=str(Path(Config.BASE_IMG_PATH, Config.LIGHT_BG_IMG))
-        )
+        img_frame = PIL.ImageTk.PhotoImage(file=str(Config.LIGHT_BG_IMG))
         self.img_id = self.bg_canvas.create_image(0, 0, image=img_frame, anchor="nw")
         self.bg_canvas.pack()
         self.fit_bg_canvas()
@@ -107,7 +103,7 @@ class App:
 
     # trayicon
     def set_trayicon(self) -> None:
-        image = PIL.Image.open(str(Path(Config.BASE_IMG_PATH, Config.APP_LOGO_ICO)))
+        image = PIL.Image.open(str(Config.APP_LOGO_ICO))
         self.trayicon = pystray.Icon(
             "MeuTrayIcon",
             image,
