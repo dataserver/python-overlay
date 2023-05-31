@@ -32,7 +32,7 @@ class App:
         self.parsem3u(Config.M3U_PLAYLIST)
 
         self.root.overrideredirect(True)
-        self.root.config(bg=Config.DARK_TXT_BG_COLOR)
+        self.root.config(bg=Config.DARK_BG_IMG_COLOR)
         self.root.attributes(
             "-alpha", 0.75, "-transparentcolor", Config.DARK_BG_IMG_COLOR, "-topmost", 1
         )

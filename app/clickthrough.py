@@ -22,15 +22,16 @@ class App:
         self.root.bind("<B1-Motion>", self.overlay_drag)
         self.trayicon_menu_clickthrough_state = False
 
-        _color_bg = "grey15"  # same color to make it works
         self.root.overrideredirect(True)
-        self.root.config(bg=_color_bg)
+        self.root.config(bg=Config.DARK_BG_IMG_COLOR)
         self.root.attributes(
-            "-alpha", 0.75, "-transparentcolor", _color_bg, "-topmost", 1
+            "-alpha", 0.75, "-transparentcolor", Config.DARK_BG_IMG_COLOR, "-topmost", 1
         )
 
         # canvas background
-        self.bg_canvas = tk.Canvas(self.root, bg=_color_bg, highlightthickness=0)
+        self.bg_canvas = tk.Canvas(
+            self.root, bg=Config.DARK_BG_IMG_COLOR, highlightthickness=0
+        )
         img_frame = PIL.ImageTk.PhotoImage(file=str(Config.LIGHT_BG_IMG))
         self.img_id = self.bg_canvas.create_image(0, 0, image=img_frame, anchor="nw")
         self.bg_canvas.pack()
