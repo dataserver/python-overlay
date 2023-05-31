@@ -23,8 +23,6 @@ class App:
         self.root.bind("<B1-Motion>", self.overlay_drag)
         self.trayicon_menu_clickthrough_state = False
 
-        self.cursor_x = 0
-        self.cursor_y = 0
         self.playlist = []
         self.volume = 50
         self.vlc_is_paused = False
@@ -233,8 +231,8 @@ class App:
         self.cursor_y = event.y
 
     def overlay_move_stop(self, event):
-        self.cursor_x = 0
-        self.cursor_y = 0
+        self.cursor_x = None
+        self.cursor_y = None
 
     def overlay_drag(self, event) -> None:
         delta_x = event.x - self.cursor_x

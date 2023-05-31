@@ -65,8 +65,8 @@ class App:
 
     # drag overlay
     def overlay_move_start(self, event) -> None:
-        self.cursor_x = event.x
-        self.cursor_y = event.y
+        self.cursor_x = None
+        self.cursor_y = None
 
     def overlay_move_stop(self, event):
         self.cursor_x = 0
