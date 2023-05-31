@@ -39,8 +39,8 @@ class App:
         self.text = tk.Label(
             self.root,
             text="",
-            fg=Config.LIGHT_FG_COLOR,
-            bg=Config.LIGHT_BG_COLOR,
+            fg=Config.LIGHT_TXT_FG_COLOR,
+            bg=Config.LIGHT_TXT_BG_COLOR,
             bd=0,
             pady=0,
         )
@@ -65,8 +65,8 @@ class App:
 
     # drag overlay
     def overlay_move_start(self, event) -> None:
-        self.cursor_x = None
-        self.cursor_y = None
+        self.cursor_x = event.x
+        self.cursor_y = event.y
 
     def overlay_move_stop(self, event):
         self.cursor_x = 0

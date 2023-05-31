@@ -43,8 +43,9 @@ class App:
             "-transparentcolor", "grey15"
         )  # str_a_ange color to avoid jagged borders
         self.root.wm_attributes("-topmost", True)
-        self.root.bind("<Button-1>", self.click)
-        self.root.bind("<B1-Motion>", self.drag)
+        self.root.bind("<Button-1>", self.overlay_move_start)
+        self.root.bind("<ButtonRelease-1>", self.overlay_move_stop)
+        self.root.bind("<B1-Motion>", self.overlay_drag)
 
         self.font = Config.FONT_DEFAULT
         self.font_label = Config.FONT_LABEL
@@ -66,14 +67,21 @@ class App:
         self.root.eval("tk::PlaceWindow . center")
         self.root.mainloop()
 
-    def click(self, event) -> None:
-        self._offsetx = event.x
-        self._offsety = event.y
+    # drag overlay
+    def overlay_move_start(self, event) -> None:
+        self.cursor_x = event.x
+        self.cursor_y = event.y
 
-    def drag(self, event) -> None:
-        x = self.root.winfo_pointerx() - self._offsetx
-        y = self.root.winfo_pointery() - self._offsety
-        self.root.geometry("+{x}+{y}".format(x=x, y=y))
+    def overlay_move_stop(self, event):
+        self.cursor_x = 0
+        self.cursor_y = 0
+
+    def overlay_drag(self, event) -> None:
+        delta_x = event.x - self.cursor_x
+        delta_y = event.y - self.cursor_y
+        x = self.root.winfo_x() + delta_x
+        y = self.root.winfo_y() + delta_y
+        self.root.geometry(f"+{x}+{y}")
 
     ###############################################################
     def set_overlay_content(self) -> None:
@@ -83,7 +91,7 @@ class App:
         image = tk.PhotoImage(file=str(Config.APP_LOGO_PNG))
         image_logo = image.subsample(9)
         self.logo = tk.Label(
-            self.root, border=0, bg=Config.DARK_BG_COLOR, image=image_logo
+            self.root, border=0, bg=Config.DARK_TXT_BG_COLOR, image=image_logo
         )
         self.logo.image = image_logo  # type: ignore
         self.logo.place(x=11, y=13)
@@ -91,8 +99,8 @@ class App:
             self.root,
             text="Timer",
             font=self.font_label,
-            fg=Config.DARK_FG_COLOR,
-            bg=Config.DARK_BG_COLOR,
+            fg=Config.DARK_TXT_FG_COLOR,
+            bg=Config.DARK_TXT_BG_COLOR,
             bd=0,
             pady=0,
         )
@@ -103,8 +111,8 @@ class App:
             self.root,
             text="Reset",
             font=self.font_btn,
-            fg=Config.DARK_FG_COLOR,
-            bg=Config.DARK_BG_COLOR,
+            fg=Config.DARK_TXT_FG_COLOR,
+            bg=Config.DARK_TXT_BG_COLOR,
             bd=0,
             pady=0,
             command=self.timers_reset_all,
@@ -114,8 +122,8 @@ class App:
             self.root,
             text="Quit",
             font=self.font_btn,
-            fg=Config.DARK_FG_COLOR,
-            bg=Config.DARK_BG_COLOR,
+            fg=Config.DARK_TXT_FG_COLOR,
+            bg=Config.DARK_TXT_BG_COLOR,
             bd=0,
             pady=0,
             command=self.quit_app,
@@ -187,8 +195,8 @@ class App:
             self.root,
             text="Start",
             font=self.font_btn,
-            fg=Config.DARK_FG_COLOR,
-            bg=Config.DARK_BG_COLOR,
+            fg=Config.DARK_TXT_FG_COLOR,
+            bg=Config.DARK_TXT_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.timer_start, idx=idx),
@@ -199,8 +207,8 @@ class App:
             self.root,
             text="Reset",
             font=self.font_btn,
-            fg=Config.DARK_FG_COLOR,
-            bg=Config.DARK_BG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.timer_reset, idx=idx),
@@ -213,7 +221,7 @@ class App:
             textvariable=text,
             font=self.font_label,
             fg=color,
-            bg=Config.DARK_BG_COLOR,
+            bg=Config.DARK_TXT_BG_COLOR,
             bd=0,
             padx=0,
             pady=0,

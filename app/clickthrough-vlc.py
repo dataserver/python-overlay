@@ -31,16 +31,16 @@ class App:
         self.media_list = self.instance_player.media_list_new()  # type: ignore
         self.parsem3u(Config.M3U_PLAYLIST)
 
-        _color_bg = "grey15"
+        _color_bg = Config.DARK_BG_IMG_COLOR
         self.root.overrideredirect(True)
-        self.root.config(bg=Config.LIGHT_BG_COLOR)
+        self.root.config(bg=Config.DARK_TXT_BG_COLOR)
         self.root.attributes(
             "-alpha", 0.75, "-transparentcolor", _color_bg, "-topmost", 1
         )
 
         # canvas background
         self.bg_canvas = tk.Canvas(self.root, bg=_color_bg, highlightthickness=0)
-        img_frame = PIL.ImageTk.PhotoImage(file=str(Config.LIGHT_BG_IMG))
+        img_frame = PIL.ImageTk.PhotoImage(file=str(Config.DARK_BG_IMG))
         self.img_id = self.bg_canvas.create_image(0, 0, image=img_frame, anchor="nw")
         self.bg_canvas.pack()
         self.fit_bg_canvas()
@@ -49,8 +49,8 @@ class App:
             self.root,
             text="",
             font=Config.FONT_BTN,
-            fg=Config.LIGHT_FG_COLOR,
-            bg=Config.LIGHT_BG_COLOR,
+            fg=Config.DARK_TXT_FG_COLOR,
+            bg=Config.DARK_TXT_BG_COLOR,
             bd=0,
             pady=0,
             wraplength=250,
@@ -62,8 +62,8 @@ class App:
             self.root,
             text="x",
             font=Config.FONT_BTN,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=lambda: os._exit(0),
@@ -80,8 +80,8 @@ class App:
             self.root,
             text="▶",
             font=Config.FONT_BTN_MEDIA_CONTROL,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.media_btn_command, btn="play_pause"),
@@ -92,8 +92,8 @@ class App:
             self.root,
             text="⏮",
             font=Config.FONT_BTN_MEDIA_CONTROL,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.media_btn_command, btn="prev"),
@@ -104,8 +104,8 @@ class App:
             self.root,
             text="⏹",
             font=Config.FONT_BTN_MEDIA_CONTROL,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.media_btn_command, btn="stop"),
@@ -116,8 +116,8 @@ class App:
             self.root,
             text="⏭",
             font=Config.FONT_BTN_MEDIA_CONTROL,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.media_btn_command, btn="next"),
@@ -128,8 +128,8 @@ class App:
             self.root,
             text="🔉",
             font=Config.FONT_BTN_MEDIA_CONTROL,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.media_btn_command, btn="vol_down"),
@@ -140,8 +140,8 @@ class App:
             self.root,
             text="🔊",
             font=Config.FONT_BTN_MEDIA_CONTROL,
-            fg=Config.DARK_BG_COLOR,
-            bg=Config.DARK_FG_COLOR,
+            fg=Config.DARK_BTN_FG_COLOR,
+            bg=Config.DARK_BTN_BG_COLOR,
             bd=0,
             pady=0,
             command=partial(self.media_btn_command, btn="vol_up"),
