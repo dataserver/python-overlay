@@ -31,15 +31,16 @@ class App:
         self.media_list = self.instance_player.media_list_new()  # type: ignore
         self.parsem3u(Config.M3U_PLAYLIST)
 
-        _color_bg = Config.DARK_BG_IMG_COLOR
         self.root.overrideredirect(True)
         self.root.config(bg=Config.DARK_TXT_BG_COLOR)
         self.root.attributes(
-            "-alpha", 0.75, "-transparentcolor", _color_bg, "-topmost", 1
+            "-alpha", 0.75, "-transparentcolor", Config.DARK_BG_IMG_COLOR, "-topmost", 1
         )
 
         # canvas background
-        self.bg_canvas = tk.Canvas(self.root, bg=_color_bg, highlightthickness=0)
+        self.bg_canvas = tk.Canvas(
+            self.root, bg=Config.DARK_BG_IMG_COLOR, highlightthickness=0
+        )
         img_frame = PIL.ImageTk.PhotoImage(file=str(Config.DARK_BG_IMG))
         self.img_id = self.bg_canvas.create_image(0, 0, image=img_frame, anchor="nw")
         self.bg_canvas.pack()
