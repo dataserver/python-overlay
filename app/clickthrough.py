@@ -17,7 +17,8 @@ class App:
         self.root = tk.Tk()
         self.screenwidth = self.root.winfo_screenwidth()
         self.screenheight = self.root.winfo_screenheight()
-        self.root.bind("<Button-1>", self.overlay_click)
+        self.root.bind("<Button-1>", self.overlay_move_start)
+        self.root.bind("<ButtonRelease-1>", self.overlay_move_stop)
         self.root.bind("<B1-Motion>", self.overlay_drag)
         self.trayicon_menu_clickthrough_state = False
 
@@ -63,14 +64,20 @@ class App:
         self.bg_canvas.configure(width=w, height=h)
 
     # drag overlay
-    def overlay_click(self, event) -> None:
-        self._offsetx = event.x
-        self._offsety = event.y
+    def overlay_move_start(self, event) -> None:
+        self.cursor_x = event.x
+        self.cursor_y = event.y
+
+    def overlay_move_stop(self, event):
+        self.cursor_x = 0
+        self.cursor_y = 0
 
     def overlay_drag(self, event) -> None:
-        x = self.root.winfo_pointerx() - self._offsetx
-        y = self.root.winfo_pointery() - self._offsety
-        self.root.geometry("+{x}+{y}".format(x=x, y=y))
+        delta_x = event.x - self.cursor_x
+        delta_y = event.y - self.cursor_y
+        x = self.root.winfo_x() + delta_x
+        y = self.root.winfo_y() + delta_y
+        self.root.geometry(f"+{x}+{y}")
 
     # click through
     def set_overlay_clickthrough(self, hwnd) -> None:
