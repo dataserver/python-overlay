@@ -32,14 +32,19 @@ class App:
         self.parsem3u(Config.M3U_PLAYLIST)
 
         self.root.overrideredirect(True)
-        self.root.config(bg=Config.DARK_BG_IMG_COLOR)
+        self.root.config(bg=Config.DARK_TRANSPARENT_COLOR)
         self.root.attributes(
-            "-alpha", 0.75, "-transparentcolor", Config.DARK_BG_IMG_COLOR, "-topmost", 1
+            "-alpha",
+            0.75,
+            "-transparentcolor",
+            Config.DARK_TRANSPARENT_COLOR,
+            "-topmost",
+            1,
         )
 
         # canvas background
         self.bg_canvas = tk.Canvas(
-            self.root, bg=Config.DARK_BG_IMG_COLOR, highlightthickness=0
+            self.root, bg=Config.DARK_TRANSPARENT_COLOR, highlightthickness=0
         )
         img_frame = PIL.ImageTk.PhotoImage(file=str(Config.DARK_BG_IMG))
         self.img_id = self.bg_canvas.create_image(0, 0, image=img_frame, anchor="nw")

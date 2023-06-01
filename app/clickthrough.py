@@ -23,14 +23,21 @@ class App:
         self.trayicon_menu_clickthrough_state = False
 
         self.root.overrideredirect(True)
-        self.root.config(bg=Config.DARK_BG_IMG_COLOR)
+        self.root.config(bg=Config.LIGHT_TRANSPARENT_COLOR)
         self.root.attributes(
-            "-alpha", 0.75, "-transparentcolor", Config.DARK_BG_IMG_COLOR, "-topmost", 1
+            "-alpha",
+            0.75,
+            "-transparentcolor",
+            Config.LIGHT_TRANSPARENT_COLOR,
+            "-topmost",
+            1,
         )
 
         # canvas background
         self.bg_canvas = tk.Canvas(
-            self.root, bg=Config.DARK_BG_IMG_COLOR, highlightthickness=0
+            self.root,
+            bg=Config.LIGHT_TRANSPARENT_COLOR,
+            highlightthickness=0,
         )
         img_frame = PIL.ImageTk.PhotoImage(file=str(Config.LIGHT_BG_IMG))
         self.img_id = self.bg_canvas.create_image(0, 0, image=img_frame, anchor="nw")
@@ -84,10 +91,19 @@ class App:
     def set_overlay_clickthrough(self, hwnd) -> None:
         # https://stackoverflow.com/questions/67544105/click-through-tkinter-windows/67545792#67545792
         try:
-            styles = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
-            styles = win32con.WS_EX_LAYERED | win32con.WS_EX_TRANSPARENT
-            win32gui.SetWindowLong(hwnd, win32con.GWL_EXSTYLE, styles)
-            win32gui.SetLayeredWindowAttributes(hwnd, 0, 255, win32con.LWA_ALPHA)
+            win32gui.SetWindowLong(
+                hwnd,
+                win32con.GWL_EXSTYLE,
+                win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
+                | win32con.WS_EX_LAYERED,
+            )
+            win32gui.SetLayeredWindowAttributes(
+                hwnd, win32api.RGB(255, 0, 128), 0, win32con.LWA_COLORKEY
+            )
+            # styles = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
+            # styles = win32con.WS_EX_LAYERED | win32con.WS_EX_TRANSPARENT
+            # win32gui.SetWindowLong(hwnd, win32con.GWL_EXSTYLE, styles)
+            # win32gui.SetLayeredWindowAttributes(hwnd, 0, 255, win32con.LWA_ALPHA)
         except Exception as e:
             print(e)
 

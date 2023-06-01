@@ -40,7 +40,7 @@ class App:
 
         self.root.wm_attributes("-alpha", 0.75)
         self.root.wm_attributes(
-            "-transparentcolor", Config.DARK_BG_IMG_COLOR
+            "-transparentcolor", Config.DARK_TRANSPARENT_COLOR
         )  # str_a_ange color to avoid jagged borders
         self.root.wm_attributes("-topmost", True)
         self.root.bind("<Button-1>", self.overlay_move_start)
