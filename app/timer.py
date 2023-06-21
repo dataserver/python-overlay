@@ -18,6 +18,9 @@ def custom_shutdown(self):
     # self._message_loop_thread.join()
 
 
+SysTrayIcon.shutdown = custom_shutdown
+
+
 class TrayIcon:
     def __init__(self):
         menu_options = ()
