@@ -6,7 +6,16 @@ from pathlib import Path
 from threading import Event, Thread
 
 from config import Config
-from infi.systray import SysTrayIcon
+from infi.systray import SysTrayIcon, traybar
+
+
+# Patch infi.systray
+# Remove the thread.join from the SysTrayIcon.shutdown function
+def custom_shutdown(self):
+    if not self._hwnd:
+        return  # not started
+    traybar.PostMessage(self._hwnd, traybar.WM_CLOSE, 0, 0)
+    # self._message_loop_thread.join()
 
 
 class TrayIcon:
